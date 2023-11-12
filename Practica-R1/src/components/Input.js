@@ -29,7 +29,6 @@ const Input = (props) => {
 
 const styles = StyleSheet.create({
   input: {
-    fontFamily: "Montserrat_400Regular",
     fontSize: 20,
     paddingVertical: 15,
     backgroundColor: "white",

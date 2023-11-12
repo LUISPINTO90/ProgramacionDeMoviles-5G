@@ -10,7 +10,6 @@ const Name = () => {
     >
       <Text
         style={{
-          fontFamily: "Montserrat_700Bold",
           fontSize: 40,
           color: "gray",
         }}

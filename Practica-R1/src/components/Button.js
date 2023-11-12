@@ -14,7 +14,6 @@ const Button = (props) => {
     >
       <Text
         style={{
-          fontFamily: "Montserrat_400Regular",
           color: "white",
           fontSize: 20,
           padding: 5,

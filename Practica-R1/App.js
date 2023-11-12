@@ -1,51 +1,23 @@
-import { StatusBar } from "expo-status-bar";
-import React, { useState } from "react";
-import { View, Alert, Platform } from "react-native";
-import { Name, Input, Button, CustomSwitch } from "./src/components";
-import { NativeWindStyleSheet } from "nativewind";
+import 'react-native-gesture-handler';
+import React, { Component } from 'react';
+import { StatusBar } from 'expo-status-bar';
+import { Actions, Scene, Router } from 'react-native-router-flux';
+import LoginScreen from './src/components/LoginScreen'; // Asegúrate de importar LoginScreen adecuadamente
+import MainScreen from './src/components/MainScreen'; // Asegúrate de importar MainScreen adecuadamente
 
-import {
-  useFonts,
-  Montserrat_400Regular,
-  Montserrat_700Bold,
-} from "@expo-google-fonts/montserrat";
+const scenes = Actions.create(
+    <Scene key="root">
+        <Scene key="login" component={LoginScreen} title="Login" initial={true} hideNavBar/>
+        <Scene key="main" component={MainScreen} title="Main" />
+    </Scene>
+);
 
-NativeWindStyleSheet.setOutput({
-  default: "native",
-});
-
-export default function App() {
-  const [inputValue, setInputValue] = useState("");
-
-  const handleButtonClick = () => {
-    const alertMessage = `${inputValue}`;
-    if (Platform.OS === "web") {
-      alert(alertMessage);
-    } else {
-      Alert.alert("Alerta", alertMessage);
+export default class App extends Component {
+    render() {
+        return (
+            <Router scenes={scenes}>
+                <StatusBar style="auto" />
+            </Router>
+        );
     }
-  };
-
-  const [fontsLoaded] = useFonts({
-    Montserrat_400Regular,
-    Montserrat_700Bold,
-  });
-
-  if (!fontsLoaded) {
-    return null;
-  }
-
-  return (
-    <View className="flex-1 items-center justify-center">
-      <Name />
-      <Input
-        placeholder="Escribe algo..."
-        value={inputValue}
-        onChangeText={setInputValue}
-      />
-      <Button onPress={handleButtonClick}>Mostrar Alert</Button>
-      <CustomSwitch />
-      <StatusBar style="auto" />
-    </View>
-  );
 }
