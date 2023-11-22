@@ -21,7 +21,9 @@ export default class ArtistList extends Component {
     });
   };
 
-  handlePress(artist) {}
+  handlePress = (artist) => {
+    Actions.artistDetail({ artist });
+  };
 
   componentDidMount() {
     this.updateDataSource(this.props.artists);
